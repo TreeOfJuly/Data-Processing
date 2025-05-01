@@ -10,8 +10,8 @@ void InMemoryDB::begin_transaction(){
 }
 
 void InMemoryDB::put(string key, int value){
-    if(transaction){
-        throw runtime_error("Already in transaction process!");
+    if(!transaction){
+        throw runtime_error("Not in transaction process, please type BEGIN!");
     }
     uncommitted_db[key] = value;
 }
@@ -26,7 +26,7 @@ int InMemoryDB::get(string key){
 
 void InMemoryDB::commit(){
     if(!transaction){
-        throw runtime_error("Already in transaction process!");
+        throw runtime_error("Not in transaction process, please type BEGIN!");
     }
     transaction = false;
     db = uncommitted_db;
@@ -34,7 +34,7 @@ void InMemoryDB::commit(){
 
 void InMemoryDB::rollback(){
     if(!transaction){
-        throw runtime_error("Already in transaction process!");
+        throw runtime_error("Not in transaction process, please type BEGIN!");
     }
     transaction = false;
     uncommitted_db.clear();

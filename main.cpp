@@ -42,7 +42,7 @@ int main(){
             if(value == -1){
                 cout << "The key does not exist!" << endl;
             } else{
-                cout << "The value of " << key << "is: " << value << endl;
+                cout << "The value of " << key << " is: " << value << endl;
             }
         } else if(command == "COMMIT"){
             try{
